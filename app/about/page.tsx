@@ -1,5 +1,5 @@
-function AboutPage() {
-  return <div>AboutPage</div>;
+async function AboutPage() {
+  return <div>About Page</div>;
 }
 
 export default AboutPage;
