@@ -2,7 +2,7 @@
 
 import db from '@/utils/db';
 // import { currentUser, auth } from '@clerk/nextjs/server';
-// import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 // import {
 //   imageSchema,
 //   productSchema,
@@ -46,7 +46,7 @@ export const fetchAllProducts = ({ search = '' }: { search: string }) => {
     where: {
       OR: [
         { name: { contains: search, mode: 'insensitive' } },
-        { company: { contains: search, mode: 'insensitive' } },
+        // { company: { contains: search, mode: 'insensitive' } },
       ],
     },
     orderBy: {
@@ -55,17 +55,17 @@ export const fetchAllProducts = ({ search = '' }: { search: string }) => {
   });
 };
 
-// export const fetchSingleProduct = async (productId: string) => {
-//   const product = await db.product.findUnique({
-//     where: {
-//       id: productId,
-//     },
-//   });
-//   if (!product) {
-//     redirect('/products');
-//   }
-//   return product;
-// };
+export const fetchSingleProduct = async (productId: string) => {
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+  if (!product) {
+    redirect('/products');
+  }
+  return product;
+};
 
 // export const createProductAction = async (
 //   prevState: any,
