@@ -4,9 +4,8 @@ import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/global/Container';
 import Providers from './providers';
-// import Navbar from '@/components/navbar/Navbar';
-// import Container from '@/components/global/Container';
-// import Providers from './providers';
+import { ClerkProvider } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,19 +14,22 @@ export const metadata: Metadata = {
   description: 'A nifty store built with Next.js',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>
-          <Navbar />
-          <Container className="py-20">{children}</Container>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={inter.className}>
+          <Providers>
+            <Navbar />
+            <Container className="py-20">{children}</Container>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
