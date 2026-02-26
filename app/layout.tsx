@@ -6,6 +6,7 @@ import Container from '@/components/global/Container';
 import Providers from './providers';
 import { ClerkProvider } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +20,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
+          <Toaster />
           <Providers>
             <Navbar />
             <Container className="py-20">{children}</Container>

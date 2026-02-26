@@ -21,9 +21,10 @@ export const productSchema = z.object({
     },
     {
       message: 'description must be between 10 and 1000 words.',
-    }
+    },
   ),
 });
+
 export const imageSchema = z.object({
   image: validateImageFile(),
 });
@@ -45,7 +46,7 @@ function validateImageFile() {
 
 export function validateWithZodSchema<T>(
   schema: ZodSchema<T>,
-  data: unknown
+  data: unknown,
 ): T {
   const result = schema.safeParse(data);
   if (!result.success) {

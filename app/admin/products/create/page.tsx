@@ -1,6 +1,3 @@
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { faker } from '@faker-js/faker';
 import FormInput from '@/components/form/FormInput';
 import FormContainer from '@/components/form/FormContainer';
@@ -9,12 +6,7 @@ import ImageInput from '@/components/form/ImageInput';
 import TextAreaInput from '@/components/form/TextAreaInput';
 import CheckboxInput from '@/components/form/CheckboxInput';
 import { SubmitButton } from '@/components/form/Buttons';
-
-const createProductAction = async (formData: FormData) => {
-  'use server';
-  const name = formData.get('name') as string;
-  console.log(name);
-};
+import { createProductAction } from '@/utils/actions';
 
 function CreateProductPage() {
   const name = faker.commerce.productName();
